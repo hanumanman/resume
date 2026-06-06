@@ -1,3 +1,3 @@
-Personal portfolio website showcasing my work as a web developer.
+Personal portfolio website.
 
-Built with Next.js, TypeScript, and Tailwind CSS.
+Built with React, TypeScript, and Tailwind CSS.
