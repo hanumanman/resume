@@ -32,11 +32,26 @@ export interface Project {
   sourceUrl?: string
 }
 
+export interface Education {
+  degree: string
+  school: string
+  description?: string
+}
+
+export interface Certificate {
+  name: string
+  issuer: string
+  score?: string
+  url?: string
+}
+
 export interface PortfolioData {
   profile: Profile
   about: string[]
   skills: Skill[]
   experience: Experience[]
+  education: Education[]
+  certificates: Certificate[]
   projects: Project[]
 }
 
@@ -114,6 +129,21 @@ export const data: PortfolioData = {
         "Ensure high-quality codebase with strict code review practices adopted across the team.",
         "Ensure a11y compliance with WCAG AA and WCAG AAA standards."
       ]
+    }
+  ],
+  education: [
+    {
+      degree: "Engineer in Automation Control",
+      school: "Hanoi University of Science and Technology",
+      description:
+        "Specialized in control systems, industrial automation, and embedded systems."
+    }
+  ],
+  certificates: [
+    {
+      name: "IELTS Academic",
+      issuer: "British Council",
+      score: "7.5"
     }
   ],
   projects: [

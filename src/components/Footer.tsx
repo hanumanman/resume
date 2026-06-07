@@ -25,7 +25,7 @@ export function Footer({ profile }: Props) {
           </svg>
           {profile.email}
         </a>
-        <div className="flex gap-6">
+        <div className="no-print flex gap-6">
           <a
             href={profile.socials.github}
             target="_blank"
