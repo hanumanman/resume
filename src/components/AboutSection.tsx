@@ -6,7 +6,7 @@ export function AboutSection({ paragraphs }: Props) {
   return (
     <section
       id="about"
-      className="scroll-mt-16 border-b border-[var(--border)] py-16 md:py-20"
+      className="no-print scroll-mt-16 border-b border-[var(--border)] py-16 md:py-20"
     >
       <h2 className="mb-6 text-2xl font-semibold tracking-tight">
         <a

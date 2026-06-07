@@ -50,7 +50,7 @@ export function Footer({ profile }: Props) {
           </a>
         </div>
       </div>
-      <p className="text-sm text-[var(--text)]">
+      <p className="no-print text-sm text-[var(--text)]">
         &copy; {new Date().getFullYear()} {profile.name}
       </p>
     </footer>

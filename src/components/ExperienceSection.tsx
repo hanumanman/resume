@@ -20,7 +20,7 @@ export function ExperienceSection({ experience }: Props) {
       </h2>
       <div className="relative space-y-10 border-l border-[var(--border)]">
         {experience.map((exp, i) => (
-          <div key={i} className="relative pl-6">
+          <div key={i} className="exp-item relative pl-6">
             <div className="no-print absolute left-0 top-1.5 h-2 w-2 -translate-x-1/2 rounded-full bg-[var(--accent)] ring-2 ring-[var(--bg)]" />
             <div className="space-y-1">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">

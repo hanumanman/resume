@@ -37,6 +37,15 @@ export function HeroSection({ profile }: Props) {
           <use href="/icons.svg#download-icon" />
         </svg>
       </button>
+      <div className="print-only hidden text-[9.5pt] leading-snug">
+        <p>
+          {profile.email}
+          {"　·　"}
+          {profile.socials.github}
+          {"　·　"}
+          {profile.socials.linkedin}
+        </p>
+      </div>
     </section>
   )
 }
