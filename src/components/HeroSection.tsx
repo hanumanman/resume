@@ -8,7 +8,7 @@ export function HeroSection({ profile }: Props) {
   return (
     <section
       id="hero"
-      className="scroll-mt-16 border-b border-[var(--border)] py-20 md:py-28"
+      className="scroll-mt-16 border-b border-[var(--border)] py-16 md:py-20"
     >
       <p className="mb-4 text-sm font-medium tracking-widest text-[var(--accent)] uppercase">
         {profile.location}

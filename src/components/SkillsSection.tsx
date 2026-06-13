@@ -10,7 +10,7 @@ export function SkillsSection({ skills }: Props) {
   return (
     <section
       id="skills"
-      className="scroll-mt-16 border-b border-[var(--border)] py-16 md:py-20"
+      className="scroll-mt-16 border-b border-[var(--border)] py-12 md:py-16"
     >
       <h2 className="mb-8 text-2xl font-semibold tracking-tight">
         <a

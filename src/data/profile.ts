@@ -125,9 +125,10 @@ export const data: PortfolioData = {
         "Worked on various B2B SaaS platform, scaling the product from early-stage startup  with a direct impact on architecture, performance, and developer experience.",
       responsibility: [
         "Architected and delivered real-time collaboration features using WebSockets/SSE.",
-        "Achieved a 60% reduction in page load time through route-based code splitting, lazy hydration, and strategic caching.",
+        "Reduced page load time through route-based code splitting, lazy hydration, and strategic caching.",
         "Ensure high-quality codebase with strict code review practices adopted across the team.",
-        "Ensure a11y compliance with WCAG AA and WCAG AAA standards."
+        "Ensure a11y compliance with WCAG AA and WCAG AAA standards.",
+        "Collaborate daily with overseas teams through online standups and async communication."
       ]
     }
   ],

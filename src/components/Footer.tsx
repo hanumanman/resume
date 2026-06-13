@@ -6,7 +6,7 @@ interface Props {
 
 export function Footer({ profile }: Props) {
   return (
-    <footer id="contact" className="scroll-mt-16 py-16 md:py-20">
+    <footer id="contact" className="scroll-mt-16 py-12 md:py-16">
       <h2 className="mb-6 text-2xl font-semibold tracking-tight">
         <a
           href="#contact"
