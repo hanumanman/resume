@@ -69,7 +69,7 @@ export const data: PortfolioData = {
     }
   },
   about: [
-    "I'm a full-stack engineer with 6 years of experience building products that solve real problems. I work across the entire stack — from crafting thoughtful UIs to designing database schemas and APIs that scale.",
+    "I'm a full-stack engineer with 4 years of experience building products that solve real problems. I work across the entire stack — from crafting thoughtful UIs to designing database schemas and APIs that scale.",
     "I value simplicity, performance, and maintainability. Good software is boring: it does its job reliably and gets out of the way. I aim for code that the next engineer can pick up without a decoder ring. That being said, tinkering with bleeding edge tech is my hobby.",
     "Off the keyboard, I'm usually lost in a book or a film, or spending time with my family."
   ],
