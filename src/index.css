@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 :root {
   --bg: #faf8f2;
   --text: #5c5347;
@@ -124,7 +127,7 @@ code {
     display: block;
     background: white;
     color: #1a1a1a;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 10pt;
     line-height: 1.35;
     -webkit-print-color-adjust: exact;
@@ -135,27 +138,23 @@ code {
   .resume-print h2,
   .resume-print p,
   .resume-print li {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #1a1a1a;
+    font-family: Georgia, "Times New Roman", serif;
   }
 
   .resume-print h1 {
     margin: 0;
-    font-size: 18pt;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-size: 22pt;
+    font-weight: 700;
     line-height: 1.1;
+    color: #1a5fb4;
   }
 
   .resume-print h2 {
-    margin: 11pt 0 3pt;
-    padding-bottom: 1pt;
-    border-bottom: 0.4pt solid #1a1a1a;
-    font-size: 9pt;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    margin: 0 0 3pt;
+    font-size: 12pt;
+    font-weight: 700;
     line-height: 1.2;
-    text-transform: uppercase;
+    color: #1a5fb4;
     break-after: avoid;
   }
 
@@ -165,49 +164,71 @@ code {
     padding: 0;
   }
 
-  .resume-print .resume-title {
-    margin-top: 2pt;
-    font-size: 11pt;
-    color: #a1623b;
+  .resume-print header {
+    border-bottom: 1.5pt solid #1a5fb4;
+    padding-bottom: 6pt;
+  }
+
+  .resume-print .resume-contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 18pt;
+    row-gap: 2pt;
+    margin-top: 6pt;
   }
 
   .resume-print .resume-contact {
-    margin-top: 3pt;
-    font-size: 9pt;
-    color: #444;
-  }
-
-  .resume-print .role-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    column-gap: 12pt;
-    align-items: baseline;
-  }
-
-  .resume-print .role-main {
-    font-size: 10.5pt;
-    font-weight: 600;
-  }
-
-  .resume-print .role-company,
-  .resume-print .role-dates {
-    font-size: 10pt;
-    font-weight: 400;
-    color: #333;
-  }
-
-  .resume-print .role-dates {
+    display: inline-flex;
+    align-items: center;
+    gap: 4pt;
     font-size: 9.5pt;
-    white-space: nowrap;
+  }
+
+  .resume-print .resume-icon {
+    width: 11pt;
+    height: 11pt;
+    color: #1a5fb4;
+  }
+
+  .resume-print .resume-cols {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    column-gap: 18pt;
+    border-bottom: 1pt solid #1a5fb4;
+    padding: 8pt 0;
+  }
+
+  .resume-print .exp-heading {
+    margin-top: 8pt;
+  }
+
+  .resume-print .company-line {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1a5fb4;
+  }
+
+  .resume-print .role-line {
+    font-weight: 700;
   }
 
   .resume-print .role-desc {
     margin-top: 1pt;
   }
 
+  .resume-print .resp-label {
+    margin-top: 2pt;
+    font-weight: 700;
+    color: #1a5fb4;
+  }
+
   .resume-print .job {
     margin-top: 7pt;
     break-inside: avoid;
+  }
+
+  .resume-print .resume-cols .job:first-of-type {
+    margin-top: 3pt;
   }
 
   .resume-print ul {
@@ -220,15 +241,13 @@ code {
     margin-top: 1pt;
   }
 
-  .resume-print .skill-row {
-    display: grid;
-    grid-template-columns: 32mm 1fr;
-    column-gap: 8pt;
+  .resume-print .skill-line {
     margin-top: 2pt;
   }
 
   .resume-print .skill-label {
-    font-weight: 600;
-    white-space: nowrap;
+    font-family: ui-monospace, Menlo, monospace;
+    font-weight: 700;
+    color: #1a5fb4;
   }
 }

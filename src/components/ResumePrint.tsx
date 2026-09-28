@@ -8,99 +8,103 @@ function bareUrl(url: string): string {
   return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
 }
 
+function ascii(text: string): string {
+  return text.replace(/[·–—]/g, match => (match === "·" ? "|" : "-"))
+}
+
+function Icon({ id }: { id: string }) {
+  return (
+    <svg className="resume-icon" aria-hidden="true">
+      <use href={`/icons.svg#${id}`} />
+    </svg>
+  )
+}
+
 export function ResumePrint({ data }: Props) {
-  const { profile, about, skills, experience, education, certificates } = data
-  const summary = about[0]
+  const { profile, skills, experience, education, certificates } = data
   const categories = [...new Set(skills.map(skill => skill.category))]
 
   return (
     <article className="resume-print">
       <header>
         <h1>{profile.name}</h1>
-        <p className="resume-title">{profile.title}</p>
-        <p className="resume-contact">
-          {profile.location}
-          {" · "}
-          {profile.email}
-          {" · "}
-          {bareUrl(profile.socials.github)}
-          {" · "}
-          {bareUrl(profile.socials.linkedin)}
-        </p>
+        <div className="resume-contact-row">
+          {profile.phone !== undefined && (
+            <span className="resume-contact">
+              <Icon id="phone-icon" />
+              {profile.phone}
+            </span>
+          )}
+          <span className="resume-contact">
+            <Icon id="github-icon" />
+            {bareUrl(profile.socials.github)}
+          </span>
+          <span className="resume-contact">
+            <Icon id="mail-icon" />
+            {profile.email}
+          </span>
+          <span className="resume-contact">
+            <Icon id="linkedin-icon" />
+            {bareUrl(profile.socials.linkedin)}
+          </span>
+        </div>
       </header>
 
-      {summary !== undefined && (
+      <div className="resume-cols">
         <section>
-          <h2>Summary</h2>
-          <p>{summary}</p>
-        </section>
-      )}
-
-      <section>
-        <h2>Experience</h2>
-        {experience.map(job => (
-          <div key={`${job.company}-${job.period}`} className="job">
-            <div className="role-row">
-              <p className="role-main">
-                {job.role}
-                <span className="role-company">
-                  {" · "}
-                  {job.company}
-                </span>
-              </p>
-              <p className="role-dates">{job.period}</p>
-            </div>
-            <p className="role-desc">{job.description}</p>
-            <ul>
-              {job.responsibility.map(item => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </section>
-
-      <section>
-        <h2>Skills</h2>
-        {categories.map(category => (
-          <div key={category} className="skill-row">
-            <p className="skill-label">{category}</p>
-            <p>
+          <h2>SKILLS</h2>
+          {categories.map(category => (
+            <p key={category} className="skill-line">
+              <span className="skill-label">{category}:</span>{" "}
               {skills
                 .filter(skill => skill.category === category)
                 .map(skill => skill.name)
                 .join(", ")}
             </p>
-          </div>
-        ))}
-      </section>
-
-      <section>
-        <h2>Education</h2>
-        {education.map(item => (
-          <div key={item.school} className="job">
-            <p className="role-main">{item.degree}</p>
-            <p className="role-company">{item.school}</p>
-            {item.description !== undefined && (
-              <p className="role-desc">{item.description}</p>
-            )}
-          </div>
-        ))}
-      </section>
-
-      {certificates.length > 0 && (
-        <section>
-          <h2>Certificates</h2>
-          {certificates.map(cert => (
-            <p key={cert.name}>
-              {cert.name}
-              {" — "}
-              {cert.issuer}
-              {cert.score !== undefined ? `, ${cert.score}` : ""}
-            </p>
           ))}
         </section>
-      )}
+
+        <section>
+          <h2>CERTIFICATES & DEGREES</h2>
+          {education.map(item => (
+            <div key={item.school} className="job">
+              <p className="role-line">{item.school}</p>
+              <p>{ascii(item.degree)}.</p>
+              {item.description !== undefined && (
+                <p>{ascii(item.description)}</p>
+              )}
+            </div>
+          ))}
+          {certificates.map(cert => (
+            <div key={cert.name} className="job">
+              <p className="role-line">{cert.issuer}</p>
+              <p>
+                {cert.score !== undefined ? `${cert.score} in ` : ""}
+                {cert.name}.
+              </p>
+            </div>
+          ))}
+        </section>
+      </div>
+
+      <section>
+        <h2 className="exp-heading">Working experience</h2>
+        {experience.map(job => (
+          <div key={`${job.company}-${job.period}`} className="job">
+            <p className="company-line">
+              {job.company} ({ascii(job.period)})
+            </p>
+            <p className="role-line">{job.role}</p>
+            <p className="resp-label">Responsibilities</p>
+            <p className="role-desc">{ascii(job.description)}</p>
+            <ul>
+              {job.responsibility.map(item => (
+                <li key={item}>{ascii(item)}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
     </article>
   )
 }

@@ -4,6 +4,7 @@ export interface Profile {
   tagline: string
   location: string
   email: string
+  phone?: string
   resumeUrl: string
   socials: {
     github: string
@@ -62,6 +63,7 @@ export const data: PortfolioData = {
     tagline: "Building robust web applications end to end.",
     location: "Hanoi, Vietnam",
     email: "hoang20161678@gmail.com",
+    phone: "+84-814-462-181",
     resumeUrl: "/HoangNguyen-FullStack-Resume.pdf",
     socials: {
       github: "https://github.com/hanumanman",
@@ -103,7 +105,7 @@ export const data: PortfolioData = {
     {
       company: "JVB Vietnam",
       role: "Full-Stack Engineer",
-      period: "2025 – Present",
+      period: "2025 - Present",
       description:
         "Driving AI-powered product development across the full stack while strengthening the engineering team through knowledge sharing and talent acquisition.",
       responsibility: [
@@ -120,7 +122,7 @@ export const data: PortfolioData = {
     {
       company: "Sotatek",
       role: "Frontend Engineer",
-      period: "2022 – 2025",
+      period: "2022 - 2025",
       description:
         "Worked on various B2B SaaS platform, scaling the product from early-stage startup  with a direct impact on architecture, performance, and developer experience.",
       responsibility: [

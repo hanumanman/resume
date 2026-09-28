@@ -63,6 +63,7 @@ async function main(): Promise<void> {
         { name: "prefers-color-scheme", value: "light" }
       ])
       await page.goto(URL, { waitUntil: "networkidle0" })
+      await page.evaluate("document.fonts.ready")
       const pdf = await page.pdf({
         preferCSSPageSize: true,
         printBackground: true,
