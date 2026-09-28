@@ -127,7 +127,7 @@ code {
     display: block;
     background: white;
     color: #1a1a1a;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: "Zilla Slab", Georgia, serif;
     font-size: 10pt;
     line-height: 1.35;
     -webkit-print-color-adjust: exact;
@@ -138,7 +138,7 @@ code {
   .resume-print h2,
   .resume-print p,
   .resume-print li {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: "Zilla Slab", Georgia, serif;
   }
 
   .resume-print h1 {
@@ -246,7 +246,6 @@ code {
   }
 
   .resume-print .skill-label {
-    font-family: ui-monospace, Menlo, monospace;
     font-weight: 700;
     color: #1a5fb4;
   }

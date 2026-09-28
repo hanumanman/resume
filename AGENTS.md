@@ -48,6 +48,38 @@ public/
 - Theming via CSS custom properties, never hardcoded colors.
 - Section components follow the same pattern: `<section id="..." className="scroll-mt-16 border-b border-[var(--border)]...">` with an `<h2>` containing a self-linking `<a href="#...">`.
 
+## PDF generation (TopCV-compatible)
+
+`bun run build` also runs `scripts/generate-pdf.ts`, which prints the
+`ResumePrint` component to `public/` + `dist/`. Vercel skips generation
+(`VERCEL=1`) and serves the committed PDF.
+
+TopCV's uploader checks the rendered look, not the bytes: text layer,
+tag tree, and metadata were all ruled out by controlled uploads. What
+passes is the visual template — blue headings, icon contact row,
+two-column skills block, section rules. Keep that look.
+
+Skia/Chromium quirks (all verified by experiment, do not regress):
+
+- Any file-based `@font-face` (remote or self-hosted, woff2 or TTF)
+  makes `page.pdf()` emit zero text objects. Fonts must be injected as
+  base64 data URLs at print time (`injectPrintFonts`). Font files live
+  in `scripts/fonts/` (OFL) so builds are reproducible.
+- Never call `page.emulateMediaFeatures`. It wedges data-URL font
+  loading (faces stay `unloaded`) and the PDF comes out blank.
+  Headless defaults to light scheme; print CSS uses fixed colors.
+- Headless Chrome's sandbox cannot see `~/Library/Fonts`. Do not rely
+  on locally installed fonts.
+- `page.evaluateHandle("document.fonts.ready")` does not wait. Use
+  `page.evaluate("document.fonts.ready")` (string form; the script has
+  no DOM lib so a function form fails typecheck).
+- Keep `tagged: true` and one font family per PDF.
+
+Content rules for the print resume: phone first in `+84` format,
+ASCII punctuation only (`-`, no `–` `—` `·`), headings `SKILLS` /
+`CERTIFICATES & DEGREES` / `Working experience`, `Responsibilities:`
+labels under each job.
+
 ## Remote
 
 `origin` → `hanumanman/resume.git` (GitHub). Repo name is `resume`, not `port-v2`.
