@@ -22,12 +22,12 @@ export function CertificatesSection({ certificates }: Props) {
         {certificates.map((cert, i) => (
           <div
             key={i}
-            className="rounded-lg border border-[var(--border)] p-4"
+            className="rounded-lg p-4 [box-shadow:var(--shadow-border)]"
           >
             <h3 className="font-semibold">{cert.name}</h3>
             <p className="text-sm text-[var(--text)]">{cert.issuer}</p>
             {cert.score && (
-              <p className="mt-1 text-[var(--accent)] font-medium">
+              <p className="mt-1 font-medium text-[var(--accent)]">
                 {cert.score}
               </p>
             )}

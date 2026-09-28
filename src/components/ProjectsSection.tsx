@@ -22,7 +22,7 @@ export function ProjectsSection({ projects }: Props) {
         {projects.map(project => (
           <div
             key={project.name}
-            className="flex flex-col rounded-lg border border-[var(--border)] p-5"
+            className="flex flex-col rounded-lg p-5 [box-shadow:var(--shadow-border)]"
           >
             <h3 className="mb-2 text-lg font-semibold">{project.name}</h3>
             <p className="mb-4 flex-1 text-sm leading-relaxed text-[var(--text)]">
@@ -32,7 +32,7 @@ export function ProjectsSection({ projects }: Props) {
               {project.techStack.map(tech => (
                 <span
                   key={tech}
-                  className="rounded border border-[var(--border)] bg-[var(--code-bg)] px-2 py-0.5 text-xs"
+                  className="rounded bg-[var(--code-bg)] px-2 py-0.5 text-xs [box-shadow:var(--shadow-border)]"
                 >
                   {tech}
                 </span>

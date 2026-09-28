@@ -23,7 +23,7 @@ export function SkillsSection({ skills }: Props) {
       <div className="space-y-6">
         {categories.map(cat => (
           <div key={cat} className="skill-category">
-            <h3 className="mb-3 text-sm font-medium tracking-widest text-[var(--accent)] uppercase">
+            <h3 className="mb-3 text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
               {cat}
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -32,7 +32,7 @@ export function SkillsSection({ skills }: Props) {
                 .map(s => (
                   <span
                     key={s.name}
-                    className="skill-tag rounded-md border border-[var(--border)] bg-[var(--code-bg)] px-3 py-1.5 text-sm"
+                    className="skill-tag rounded-md bg-[var(--code-bg)] px-3 py-1.5 text-sm [box-shadow:var(--shadow-border)]"
                   >
                     {s.name}
                   </span>
