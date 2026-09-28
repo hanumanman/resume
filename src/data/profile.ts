@@ -107,16 +107,17 @@ export const data: PortfolioData = {
       role: "Full-Stack Engineer",
       period: "2025 - Present",
       description:
-        "Driving AI-powered product development across the full stack while strengthening the engineering team through knowledge sharing and talent acquisition.",
+        "Full-stack engineer building AI-powered products end to end, while also serving as tech lead and PM for a 4-6 person team from client requirements to production delivery.",
       responsibility: [
         "Develop and maintain Next.js web applications with TypeScript, delivering performant and accessible user interfaces.",
         "Build and deploy FastAPI Python backends, designing RESTful APIs and integrating with LLM pipelines.",
-        "Create C# PowerPoint plugins for automated report generation and presentation workflows.",
-        "Manage Azure cloud infrastructure — provisioning resources, configuring CI/CD, and monitoring production deployments.",
         "Implement end-to-end AI integration solutions, spanning frontend, backend, and infrastructure.",
-        "Hold technical seminars and knowledge-sharing sessions on emerging technologies for the company.",
-        "Conduct technical interviews with recruitment team to grow a high-caliber engineering team.",
-        "Onboard, train, and mentor junior and intern engineers through structured ramp-up plans and code reviews."
+        "Create C# PowerPoint plugins for automated report generation and presentation workflows.",
+        "Manage Azure cloud infrastructure - provisioning resources, configuring CI/CD, and monitoring production deployments.",
+        "Lead a 4-6 person team as PM and tech lead: plan sprints, assign tasks, and track delivery against milestones.",
+        "Serve as client-facing contact: gather requirements, clarify scope, and report progress to stakeholders.",
+        "Set technical direction, review code, and unblock engineers across the team.",
+        "Onboard, mentor, and interview junior and intern engineers; hold technical seminars on emerging technologies."
       ]
     },
     {
