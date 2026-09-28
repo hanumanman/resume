@@ -1,39 +1,56 @@
-import { spawn } from "node:child_process"
-import { writeFile } from "node:fs/promises"
+import { spawn, type ChildProcess } from "node:child_process"
+import { mkdir, writeFile } from "node:fs/promises"
 import http from "node:http"
 import path from "node:path"
 import puppeteer from "puppeteer"
 
 const PORT = 4173
-const URL = `http://localhost:${PORT}`
-const OUTPUTS = [path.resolve("public/resume.pdf"), path.resolve("dist/resume.pdf")]
+const URL = `http://127.0.0.1:${PORT}`
+const OUTPUTS = [
+  path.resolve("public/resume.pdf"),
+  path.resolve("dist/resume.pdf")
+]
 
 function waitForServer(url: string, timeoutMs = 30_000): Promise<void> {
   const start = Date.now()
   return new Promise((resolve, reject) => {
-    function poll() {
+    function poll(): void {
       http
-        .get(url, (res) => {
+        .get(url, res => {
+          res.resume()
           if (res.statusCode === 200) return resolve()
           retry()
         })
         .on("error", retry)
     }
-    function retry() {
-      if (Date.now() - start > timeoutMs) return reject(new Error("Server did not start in time"))
+    function retry(): void {
+      if (Date.now() - start > timeoutMs) {
+        return reject(new Error("Server did not start in time"))
+      }
       setTimeout(poll, 300)
     }
     poll()
   })
 }
 
-async function main() {
-  const server = spawn("bun", ["run", "preview", "--port", String(PORT)], {
-    stdio: "pipe",
-    shell: false
-  })
+function startPreview(): ChildProcess {
+  return spawn(
+    path.resolve("node_modules/.bin/vite"),
+    ["preview", "--host", "127.0.0.1", "--port", String(PORT), "--strictPort"],
+    { stdio: ["ignore", "pipe", "pipe"] }
+  )
+}
 
-  server.stderr.on("data", (d: Buffer) => process.stderr.write(d))
+async function main(): Promise<void> {
+  if (process.env.VERCEL === "1") {
+    console.log("Vercel build: serving committed public/resume.pdf")
+    return
+  }
+
+  const server = startPreview()
+  server.stderr?.on("data", (chunk: Buffer) => {
+    process.stderr.write(chunk)
+  })
 
   try {
     console.log("Waiting for preview server...")
@@ -41,28 +58,35 @@ async function main() {
     console.log("Server ready, generating PDF...")
 
     const browser = await puppeteer.launch({ headless: true })
-    const page = await browser.newPage()
+    try {
+      const page = await browser.newPage()
+      await page.emulateMediaType("print")
+      await page.emulateMediaFeatures([
+        { name: "prefers-color-scheme", value: "light" }
+      ])
+      await page.goto(URL, { waitUntil: "networkidle0" })
+      const pdf = await page.pdf({
+        preferCSSPageSize: true,
+        printBackground: true,
+        displayHeaderFooter: false,
+        margin: { top: "0", right: "0", bottom: "0", left: "0" },
+        tagged: true
+      })
 
-    await page.emulateMediaType("print")
-    await page.goto(URL, { waitUntil: "networkidle0" })
-    const pdfBuffer = await page.pdf({
-      format: "A4",
-      margin: { top: "15mm", right: "15mm", bottom: "15mm", left: "15mm" },
-      printBackground: true
-    })
-
-    await browser.close()
-
-    for (const output of OUTPUTS) {
-      await writeFile(output, pdfBuffer)
-      console.log(`PDF saved to ${output}`)
+      for (const output of OUTPUTS) {
+        await mkdir(path.dirname(output), { recursive: true })
+        await writeFile(output, pdf)
+        console.log(`PDF saved to ${output}`)
+      }
+    } finally {
+      await browser.close()
     }
   } finally {
-    server.kill()
+    server.kill("SIGTERM")
   }
 }
 
-main().catch((err) => {
+main().catch((err: unknown) => {
   console.error("PDF generation failed:", err)
   process.exit(1)
 })

@@ -27,25 +27,16 @@ export function HeroSection({ profile }: Props) {
       <p className="mb-8 max-w-xl text-lg leading-relaxed text-[var(--text)]">
         {profile.tagline}
       </p>
-      <button
-        type="button"
-        onClick={() => window.print()}
-        className="no-print inline-flex cursor-pointer items-center gap-2 rounded-md border border-[var(--accent)] py-2.5 pe-[18px] ps-5 text-sm font-medium text-[var(--accent)] transition-[color,background-color,transform] duration-150 ease-out hover:bg-[var(--accent)] hover:text-white active:scale-[0.96]"
+      <a
+        href={profile.resumeUrl}
+        download={`${profile.name.replaceAll(" ", "-")}-Resume.pdf`}
+        className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] py-2.5 pe-[18px] ps-5 text-sm font-medium text-[var(--accent)] transition-[color,background-color,transform] duration-150 ease-out hover:bg-[var(--accent)] hover:text-white active:scale-[0.96]"
       >
         Resume
         <svg className="h-4 w-4" aria-hidden="true">
           <use href="/icons.svg#download-icon" />
         </svg>
-      </button>
-      <div className="print-only hidden text-[9.5pt] leading-snug">
-        <p>
-          {profile.email}
-          {"　·　"}
-          {profile.socials.github}
-          {"　·　"}
-          {profile.socials.linkedin}
-        </p>
-      </div>
+      </a>
     </section>
   )
 }
