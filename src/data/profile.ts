@@ -62,7 +62,7 @@ export const data: PortfolioData = {
     tagline: "Building robust web applications end to end.",
     location: "Hanoi, Vietnam",
     email: "hoang20161678@gmail.com",
-    resumeUrl: "/resume.pdf",
+    resumeUrl: "/HoangNguyen-FullStack-Resume.pdf",
     socials: {
       github: "https://github.com/hanumanman",
       linkedin: "https://www.linkedin.com/in/hoangnh151/"

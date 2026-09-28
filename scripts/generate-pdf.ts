@@ -6,10 +6,8 @@ import puppeteer from "puppeteer"
 
 const PORT = 4173
 const URL = `http://127.0.0.1:${PORT}`
-const OUTPUTS = [
-  path.resolve("public/resume.pdf"),
-  path.resolve("dist/resume.pdf")
-]
+const FILE_NAME = "HoangNguyen-FullStack-Resume.pdf"
+const OUTPUTS = [path.resolve("public", FILE_NAME), path.resolve("dist", FILE_NAME)]
 
 function waitForServer(url: string, timeoutMs = 30_000): Promise<void> {
   const start = Date.now()
@@ -43,7 +41,7 @@ function startPreview(): ChildProcess {
 
 async function main(): Promise<void> {
   if (process.env.VERCEL === "1") {
-    console.log("Vercel build: serving committed public/resume.pdf")
+    console.log(`Vercel build: serving committed public/${FILE_NAME}`)
     return
   }
 

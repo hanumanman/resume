@@ -29,7 +29,7 @@ export function HeroSection({ profile }: Props) {
       </p>
       <a
         href={profile.resumeUrl}
-        download={`${profile.name.replaceAll(" ", "-")}-Resume.pdf`}
+        download={profile.resumeUrl.split("/").pop()}
         className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] py-2.5 pe-[18px] ps-5 text-sm font-medium text-[var(--accent)] transition-[color,background-color,transform] duration-150 ease-out hover:bg-[var(--accent)] hover:text-white active:scale-[0.96]"
       >
         Resume
