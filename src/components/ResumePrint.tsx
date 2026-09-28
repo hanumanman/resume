@@ -47,6 +47,12 @@ export function ResumePrint({ data }: Props) {
             <Icon id="linkedin-icon" />
             {bareUrl(profile.socials.linkedin)}
           </span>
+          {profile.website !== undefined && (
+            <a className="resume-contact" href={profile.website}>
+              <Icon id="link-icon" />
+              {bareUrl(profile.website)}
+            </a>
+          )}
         </div>
       </header>
 

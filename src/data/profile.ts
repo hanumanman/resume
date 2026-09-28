@@ -5,6 +5,7 @@ export interface Profile {
   location: string
   email: string
   phone?: string
+  website?: string
   resumeUrl: string
   socials: {
     github: string
@@ -64,6 +65,7 @@ export const data: PortfolioData = {
     location: "Hanoi, Vietnam",
     email: "hoang20161678@gmail.com",
     phone: "+84-814-462-181",
+    website: "https://hoang-resume.vercel.app/",
     resumeUrl: "/HoangNguyen-FullStack-Resume.pdf",
     socials: {
       github: "https://github.com/hanumanman",

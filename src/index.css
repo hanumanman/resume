@@ -182,6 +182,8 @@ code {
     align-items: center;
     gap: 4pt;
     font-size: 9.5pt;
+    color: inherit;
+    text-decoration: none;
   }
 
   .resume-print .resume-icon {
